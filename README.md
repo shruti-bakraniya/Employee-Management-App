@@ -1,6 +1,6 @@
 # Employee-Management-App: E-Tracker
 
-A new Flutter project.
+Flutter-Based Employee Management App using BLoC State Management with Clean Architecture and Google Sheets API Integration
 
 ## Getting Started
 

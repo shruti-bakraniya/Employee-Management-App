@@ -1,3 +1,5 @@
+import 'package:e_tracker/features/home/ui/home_screen.dart';
+import 'package:e_tracker/utils/constants/app_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,8 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'E-Tracker',
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
+      home: const HomeScreen(),
     );
   }
 }
