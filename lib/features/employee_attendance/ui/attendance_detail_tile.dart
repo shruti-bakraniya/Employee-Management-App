@@ -1,6 +1,6 @@
 import 'package:e_tracker/features/employee_attendance/domain/employee_attendance_model.dart';
 import 'package:e_tracker/features/employee_attendance/ui/time_textfield_widget.dart';
-import 'package:e_tracker/utils/constants/app_colors.dart';
+import 'package:e_tracker/utils/common/container.dart';
 import 'package:e_tracker/utils/constants/app_text.dart';
 import 'package:e_tracker/utils/validators/helper.dart';
 import 'package:flutter/material.dart';
@@ -34,25 +34,7 @@ class _AttendanceDetailTileState extends State<AttendanceDetailTile> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(
-        vertical: 10.0,
-        horizontal: 18.0,
-      ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 6,
-      ),
-      decoration: BoxDecoration(
-          color: AppColors.secondary,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.text.withOpacity(0.2),
-              blurRadius: 12,
-              offset: const Offset(4, 4),
-            ),
-          ]),
+    return CustomContainer(
       child: IntrinsicHeight(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
