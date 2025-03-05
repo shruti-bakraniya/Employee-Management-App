@@ -40,6 +40,8 @@ dev_dependencies:
     sdk: flutter
   google_fonts: ^6.2.1
   intl: ^0.20.2
+  googleapis: ^13.1.0
+  googleapis_auth: ^1.6.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

@@ -1,3 +1,4 @@
+import 'package:e_tracker/features/employee_management/ui/employee_management_screen.dart';
 import 'package:e_tracker/utils/common/container.dart';
 import 'package:e_tracker/utils/constants/app_colors.dart';
 import 'package:e_tracker/utils/constants/app_text.dart';
@@ -8,12 +9,14 @@ class EmployeeListTile extends StatelessWidget {
   final bool hasLeadingAndTrailing;
   final String employeeName;
   final TextStyle? textStyle;
+  final VoidCallback? onRemove;
 
   const EmployeeListTile({
     super.key,
     required this.employeeName,
     this.hasLeadingAndTrailing = true,
     this.textStyle,
+    this.onRemove,
   });
 
   @override
@@ -47,7 +50,7 @@ class EmployeeListTile extends StatelessWidget {
           ),
           hasLeadingAndTrailing ?
           ElevatedButton(
-            onPressed: () {},
+            onPressed: onRemove,
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.alert,
               foregroundColor: AppColors.secondary,
