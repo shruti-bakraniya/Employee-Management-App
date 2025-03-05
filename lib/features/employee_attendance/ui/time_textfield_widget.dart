@@ -42,6 +42,11 @@ class _CustomTimeTextFieldWidgetState extends State<CustomTimeTextFieldWidget> {
     return CustomTextField(
       controller: widget.controller,
       readOnly: true,
+      decoration: const InputDecoration(
+        border: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        focusedBorder: InputBorder.none,
+      ),
       onTap: () async {
         final time = await showTimePicker(
           context: context,

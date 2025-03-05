@@ -16,4 +16,13 @@ class AppText {
   static const String employeeManagement = 'Employee Management';
   static const String remove = 'Remove';
   static const String action = 'Action';
+
+  //DialogBox
+  static const String success = 'Success';
+  static const String successMessage = 'Attendance Updated Successfully!';
+  static const String ok = 'OK';
+  static const String addNewEmployee = 'Add New Employee';
+  static const String cancel = 'Cancel';
+  static const String add = 'Add';
+  static const String addEmployeeName = 'Enter Employee Name';
 }

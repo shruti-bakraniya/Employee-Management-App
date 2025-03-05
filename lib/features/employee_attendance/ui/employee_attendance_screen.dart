@@ -1,5 +1,8 @@
+import 'package:e_tracker/features/employee_attendance/data/employee_hrms_data.dart';
 import 'package:e_tracker/features/employee_attendance/domain/employee_attendance_model.dart';
 import 'package:e_tracker/features/employee_attendance/ui/attendance_detail_tile.dart';
+import 'package:e_tracker/features/employee_management/data/employee_details.dart';
+import 'package:e_tracker/features/employee_management/domain/employee_details_model.dart';
 import 'package:e_tracker/utils/common/button.dart';
 import 'package:e_tracker/utils/constants/app_text.dart';
 import 'package:e_tracker/utils/validators/helper.dart';
@@ -11,29 +14,43 @@ class EmployeeAttendanceScreen extends StatefulWidget {
 
   @override
   State<EmployeeAttendanceScreen> createState() =>
-      _EmployeeAttendanceScreenState();
+      EmployeeAttendanceScreenState();
 }
 
-class _EmployeeAttendanceScreenState extends State<EmployeeAttendanceScreen> {
+class EmployeeAttendanceScreenState extends State<EmployeeAttendanceScreen> {
   dynamic selectedDate = DateTime.now();
-  List<EmployeeAttendanceModel> listOfEmployeeAttendanceData = [
-    EmployeeAttendanceModel(
-      employeeId: "emp001",
-      employeeName: "John Doe",
-      checkIn: "09:00 AM",
-      checkOut: "06:00 PM",
-    ),
-    EmployeeAttendanceModel(
-      employeeId: "emp002",
-      employeeName: "Jane Smith",
-      checkIn: "08:30 AM",
-      checkOut: "07:30 PM",
-    ),
-    EmployeeAttendanceModel(
-      employeeId: "emp003",
-      employeeName: "Jack Swan",
-    ),
-  ];
+  List<EmployeeAttendanceModel> filteredEmployeeAttendanceData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    List<EmployeeAttendanceModel> attendanceData =
+    await EmployeeHRMSData().fetchEmployeeHRMSDetails(selectedDate);
+
+    if (attendanceData.isEmpty) {
+      List<EmployeeDetailsModel> employees =
+      await EmployeeDetails().fetchEmployeeDetails();
+
+      setState(() {
+        filteredEmployeeAttendanceData = employees.map((employee) {
+          return EmployeeAttendanceModel(
+            date: DateFormat('yyyy-MM-dd').format(selectedDate),
+            employeeId: "",
+            employeeName: employee.employeeName,
+          );
+        }).toList();
+      });
+    } else {
+      setState(() {
+        filteredEmployeeAttendanceData = attendanceData;
+      });
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +81,7 @@ class _EmployeeAttendanceScreenState extends State<EmployeeAttendanceScreen> {
                   setState(() {
                     selectedDate = pickedDate;
                   });
+                  fetchData();
                 },
                 text: AppText.selectDate,
               ),
@@ -80,9 +98,9 @@ class _EmployeeAttendanceScreenState extends State<EmployeeAttendanceScreen> {
             shrinkWrap: true,
             padding: EdgeInsets.zero,
             itemBuilder: (context, index) => AttendanceDetailTile(
-              employeeAttendanceData: listOfEmployeeAttendanceData[index],
+              employeeAttendanceData: filteredEmployeeAttendanceData[index],
             ),
-            itemCount: listOfEmployeeAttendanceData.length,
+            itemCount: filteredEmployeeAttendanceData.length,
           ),
         )
       ],

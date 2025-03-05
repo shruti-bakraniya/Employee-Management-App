@@ -66,7 +66,7 @@ class AppTheme {
           textStyle: MaterialStateTextStyle.resolveWith((states) => TextStyle(
             fontFamily: GoogleFonts.roboto().fontFamily,
             fontSize: 16,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
           )),
           foregroundColor:
           MaterialStateColor.resolveWith((states) => AppColors.primary),
@@ -88,6 +88,12 @@ class AppTheme {
         color: AppColors.text,
         fontSize: 18,
         fontWeight: FontWeight.w400,
+      ),
+      titleMedium: TextStyle(
+        fontFamily: GoogleFonts.roboto().fontFamily,
+        color: AppColors.text,
+        fontSize: 26,
+        fontWeight: FontWeight.w600,
       ),
       bodyMedium: TextStyle(
         fontFamily: GoogleFonts.roboto().fontFamily,
@@ -207,10 +213,28 @@ class AppTheme {
       foregroundColor:
           MaterialStateColor.resolveWith((states) => AppColors.primary),
     )),
-    inputDecorationTheme: const InputDecorationTheme(
-      border: InputBorder.none,
-      enabledBorder: InputBorder.none,
-      focusedBorder: InputBorder.none,
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.text.withOpacity(0.2),
+          width: 1,
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: const BorderSide(
+          color: AppColors.primary,
+          width: 2,
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.text.withOpacity(0.2),
+          width: 1,
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
     ),
     textTheme: TextTheme(
       headlineMedium: TextStyle(
@@ -224,6 +248,12 @@ class AppTheme {
         color: AppColors.text,
         fontSize: 18,
         fontWeight: FontWeight.w400,
+      ),
+      titleMedium: TextStyle(
+        fontFamily: GoogleFonts.roboto().fontFamily,
+        color: AppColors.text,
+        fontSize: 26,
+        fontWeight: FontWeight.w600,
       ),
       bodyMedium: TextStyle(
         fontFamily: GoogleFonts.roboto().fontFamily,
@@ -273,6 +303,14 @@ class AppTheme {
     dividerTheme: const DividerThemeData(
       color: AppColors.divider,
       thickness: 1,
+    ),
+    dialogTheme: const DialogTheme(
+      backgroundColor: AppColors.secondary,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(24),
+        ),
+      ),
     ),
   );
 }
